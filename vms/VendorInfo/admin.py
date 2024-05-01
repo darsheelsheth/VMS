@@ -19,7 +19,6 @@ class VendorAdmin(admin.ModelAdmin):
     )
     readonly_fields = ('code',)
 
-
 admin.site.register(PurchaseOrder)
 class PurchaseOrderAdmin(admin.ModelAdmin):
     list_display = (
