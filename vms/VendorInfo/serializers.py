@@ -36,5 +36,5 @@ class VendorSerializer(serializers.ModelSerializer):
     def get_purchase_orders(self, obj):
         return PurchaseOrderSerializer(
             obj.purchase_orders, 
-            many=True
+            many=True,
         ).data
