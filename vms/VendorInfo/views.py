@@ -138,9 +138,12 @@ class VenderPerformanceViewSet(GenericViewSet):
             po.status == 'COMPLETED' and 
             po.fulfillment_rate
         ]
-        fulfillment_rate = sum([po.fulfillment_rate for po in completed_po]) / len(completed_po)
-        fulfillment_rate = fulfillment_rate if fulfillment_rate else 0
-        fulfillment_rate = fulfillment_rate / total_purchase_orders
+        if not completed_po:
+            fulfillment_rate = 0
+        else:
+            fulfillment_rate = sum([po.fulfillment_rate for po in completed_po]) / len(completed_po)
+            fulfillment_rate = fulfillment_rate if fulfillment_rate else 0
+            fulfillment_rate = fulfillment_rate / total_purchase_orders
                 
         return Response(
             dict(
